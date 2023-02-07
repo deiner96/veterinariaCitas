@@ -125,7 +125,7 @@ $(function () {
         calendar = new FullCalendar.Calendar(calendarEl, {
         locale: 'es',
         plugins: ['interaction', 'dayGrid', 'timeGrid' ],
-        timeZone: 'America/Bogota',
+        // timeZone: 'America/Bogota',
         header: {
         left: 'prev,next today',
         center: 'title',

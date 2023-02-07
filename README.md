@@ -27,6 +27,7 @@ Se desarrolla bajo las peticiones dadas, a continuacion se listan los pasos corr
 -EL Sistema permite login y logout
 -El sistema permite registro de mascotas
 -El software permite el registro de citas unicas a un lapso de value de 45 minutos inicial o quemado ('puede modificarse manualmente')
+-El software alerta si la fecha a registrar de la cita ya está caducada o no disponible
 
 
 ### notas Importantes de usabilidad

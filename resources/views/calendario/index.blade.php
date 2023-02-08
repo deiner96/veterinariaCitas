@@ -43,14 +43,16 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label for="">Fecha</label>
-                        <input type="date" class="form-control" name="fecha_registro" id="fecha_registro" >
+                        <input type="date" class="form-control" name="fecha_registro" id="fecha_registro">
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label for="">Hora inicial</label>
-                        <input type="time" class="form-control" name="hora_inicio" id="hora_inicial" >
+                        <input type="time" class="form-control" name="hora_inicial" required id="hora_inicial">
+                        <div id="info"></div>
                     </div>
+                    <div id="info"></div>
                 </div>
                 <div class="col">
                     <div class="form-group">
@@ -107,6 +109,31 @@
 
 
 <script>
+    const limit=[
+        ["00:00", "23:00"]
+    ];
+
+    document.querySelector("input[type=time]").addEventListener("change", function() {
+        // obtenemos el valor introducido por el usuario
+        const user = this.value.split(":");
+
+        // recorremos todas las fechas limite
+        // Si devuelve true, esta entre algunas de las fechas
+        const result = limit.some(el => {
+            let start = el[0].split(":");
+            let end = el[1].split(":");
+
+            // comprobamos que este entre las fechas limite
+            return (start[0]<user[0] || (start[0]==user[0] && start[1]<=user[1])) && (end[0]>user[0] || (end[0]==user[0] && end[1]>=user[1]))
+        });
+        if(result){
+            document.getElementById("info").innerHTML = "Hora habilitada";
+        }else{
+            var hora_inicial = moment().format("HH:mm");
+            alert("no puede registar citas despues de las 11: pm");
+            $('input[type="time"]').val(hora_inicial);
+        }
+    });
 
 setTimeout(function() {
         $(".close-modal").fadeOut(1500);
@@ -125,7 +152,6 @@ $(function () {
         calendar = new FullCalendar.Calendar(calendarEl, {
         locale: 'es',
         plugins: ['interaction', 'dayGrid', 'timeGrid' ],
-        // timeZone: 'America/Bogota',
         header: {
         left: 'prev,next today',
         center: 'title',
@@ -134,15 +160,31 @@ $(function () {
          navLinks: true, // can click day/week names to navigate views
          selectable: true,
          selectMirror: true,
-         select: function(arg) {
-             let fecha = moment(arg.start).format("YYYY-MM-DD")
-             let hora_inicial = moment(arg.start).format("HH:mm:ss");
+         dateClick: function(info) {
+            var date = new Date(info.dateStr);
+            var hoy = new Date();
+            var ayer = new Date(hoy - 24 * 60 * 60 * 1000);
+            let fecha = moment(info.dateStr).format("YYYY-MM-DD")
+            var hora_inicial = moment().format("HH:mm")
+            // var myDate = new Date();
+            // hours = myDate.getHours();
+            // minutes = myDate.getMinutes();
+            // if (hours < 10) hours = 0 + hours;
+            // if (minutes < 10) minutes = "0" + minutes;
+            // let hora_inicial = hours+ ":" +minutes;
 
-             $("#fecha_registro").val(fecha);
-             $("#hora_inicial").val(hora_inicial);
-             $("#duracion").val(45);
-            $("#calendario_modal").modal();
-           calendar.unselect()
+             if(date < ayer) {
+                 alert('no se puede registrar citas en fechas anteriores');
+
+             }else{
+                 $("#calendario_modal").modal();
+                 $("#fecha_registro").val(fecha);
+                 $("#hora_inicial").val(hora_inicial);
+                 // $("#hora_inicial").val(hours+ ":" +minutes);
+                 $("#duracion").val(45);
+                 $("#calendario_modal").modal();
+                 calendar.unselect()
+             }
          },
          editable: true,
          events: '/cita/listar',

@@ -33,12 +33,11 @@ class citasController extends Controller
         return response()->json($nueva_cita);
     }
     public function validar_fecha($fecha, $hora_inicial, $hora_final){
-        $citas = Cita::select("*")
-        ->whereDate('fecha_registro', $fecha)
-        ->whereBetween('hora_inicial', [$hora_inicial, $hora_final])
-        ->orWhereBetween('hora_final', [$hora_inicial, $hora_final])
-        ->first();
-
+        $citas = Cita::where('fecha_registro', $fecha)
+        ->where(function($query) use ($hora_inicial, $hora_final){
+                        $query->whereBetween("hora_inicial", [$hora_inicial, $hora_final])
+                        ->orWhereBetween("hora_final", [$hora_inicial, $hora_final]);
+                    })->first();
         return $citas == null ? true : false;
 
     }

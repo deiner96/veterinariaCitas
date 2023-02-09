@@ -52,7 +52,6 @@
                         <input type="time" class="form-control" name="hora_inicial" required id="hora_inicial">
                         <div id="info"></div>
                     </div>
-                    <div id="info"></div>
                 </div>
                 <div class="col">
                     <div class="form-group">
@@ -161,10 +160,10 @@ $(function () {
          selectable: true,
          selectMirror: true,
          select: function(arg) {
-            var date = new Date(info.dateStr);
+            var date = new Date(arg.start);
             var hoy = new Date();
             var ayer = new Date(hoy - 24 * 60 * 60 * 1000);
-            var fecha = moment(info.dateStr).format("YYYY-MM-DD")
+            var fecha = moment(arg.start).format("YYYY-MM-DD")
             var hora_inicial = moment().format("HH:mm")
 
              if(date < ayer) {

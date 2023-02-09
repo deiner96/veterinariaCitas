@@ -160,18 +160,12 @@ $(function () {
          navLinks: true, // can click day/week names to navigate views
          selectable: true,
          selectMirror: true,
-         dateClick: function(info) {
+         select: function(arg) {
             var date = new Date(info.dateStr);
             var hoy = new Date();
             var ayer = new Date(hoy - 24 * 60 * 60 * 1000);
-            let fecha = moment(info.dateStr).format("YYYY-MM-DD")
+            var fecha = moment(info.dateStr).format("YYYY-MM-DD")
             var hora_inicial = moment().format("HH:mm")
-            // var myDate = new Date();
-            // hours = myDate.getHours();
-            // minutes = myDate.getMinutes();
-            // if (hours < 10) hours = 0 + hours;
-            // if (minutes < 10) minutes = "0" + minutes;
-            // let hora_inicial = hours+ ":" +minutes;
 
              if(date < ayer) {
                  alert('no se puede registrar citas en fechas anteriores');
@@ -180,7 +174,6 @@ $(function () {
                  $("#calendario_modal").modal();
                  $("#fecha_registro").val(fecha);
                  $("#hora_inicial").val(hora_inicial);
-                 // $("#hora_inicial").val(hours+ ":" +minutes);
                  $("#duracion").val(45);
                  $("#calendario_modal").modal();
                  calendar.unselect()

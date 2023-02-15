@@ -165,7 +165,32 @@ $(function () {
             var ayer = new Date(hoy - 24 * 60 * 60 * 1000);
             var fecha = moment(arg.start).format("YYYY-MM-DD")
             var hora_inicial = moment().format("HH:mm")
+            var fecha_hoy = moment().format("YYYY-MM-DD")
 
+            const limitHora=[
+                ["00:00", hora_inicial]
+            ];
+
+            document.querySelector("input[type=time]").addEventListener("change", function() {
+
+                const user1 = this.value.split(":");
+                const result = limitHora.some(el => {
+                    let start = el[0].split(":");
+                    let end = el[1].split(":");
+                    // Se valida que la hora no sea menor a la hora actual
+                    return (start[0]<user1[0] || (start[0]>user1[0] && start[1]<user1[1])) && (end[0]<user1[0] || (end[0]<=user1[0] && end[1]<user1[1]))
+                });
+                if(result){
+                    document.getElementById("info").innerHTML = "Hora habilitada";
+                }else{
+                    //Validacion solo para el dia actual
+                    if(fecha_hoy == fecha){
+                        var hora_inicial = moment().format("HH:mm");
+                        alert("no puede registar citas antes de la hora actual");
+                        $('input[type="time"]').val(hora_inicial);
+                    }
+                }
+            });
              if(date < ayer) {
                  alert('no se puede registrar citas en fechas anteriores');
 

@@ -32,11 +32,13 @@ Se desarrolla sistema para el registro de citas, a continuacion se listan los it
 
 
 2: Tener instalado GIT en su sistema operativo
+
 3: Clic derecho dentro de la carpeta 'www' en la raiz de su sistema C:\laragon\www, y finaliza dando clic en 'Git bash here'
 
 ![image](https://user-images.githubusercontent.com/124646372/219444054-3e2bcdac-f23f-40a0-ac6f-7dbd8916ed3d.png)
 
 4: cuando ejecute la consola escribes el comando git clone seguido de la url clonada del repositorio.... git clone https://github.com/deiner96/veterinariaCitas.git  y le dan enter.
+
 5. Abrir la raiz del proyecto ya clonado: C:\laragon\www\veterinariaCitas   estando ya en la raiz del proyecto, dar clic derecho y seleccionan la opcion 'Git bash here' y ejecutan el comando: composer install     el comando lo que hace es instalar archivos necesarios para el funcionamiento de cualquier proyecto laravel
 
 6. IMPORTANTE verificar que el sistema le haya creado el archivo .env en la raiz del proyecto de lo contrario deberá eliminar la carpeta Vendor y ejecutar el comando: composer update  si genera error al finalizar ejecutan el comando: composer install, posterior  ejecutar el comando copy .env.example .env    ('configurar archivo .env enrutando a la base de datos') .....si el **APP_KEY=** en el archivo **.env** queda vacio deben de ejecutar el comando **php artisan key:generate**

@@ -27,22 +27,31 @@ Se desarrolla sistema para el registro de citas, a continuacion se listan los it
 #Pasos de instalación con Laragon
 
 1: clonar el repositorio
+
 ![image](https://user-images.githubusercontent.com/124646372/219443462-b329e305-9ae1-4d5b-ad2a-bb7069029151.png)
+
 
 2: Tener instalado GIT en su sistema operativo
 3: Clic derecho dentro de la carpeta 'www' en la raiz de su sistema C:\laragon\www, y finaliza dando clic en 'Git bash here'
+
 ![image](https://user-images.githubusercontent.com/124646372/219444054-3e2bcdac-f23f-40a0-ac6f-7dbd8916ed3d.png)
+
 4: cuando ejecute la consola escribes el comando git clone seguido de la url clonada del repositorio.... git clone https://github.com/deiner96/veterinariaCitas.git  y le dan enter.
 5. Abrir la raiz del proyecto ya clonado: C:\laragon\www\veterinariaCitas   estando ya en la raiz del proyecto, dar clic derecho y seleccionan la opcion 'Git bash here' y ejecutan el comando: composer install     el comando lo que hace es instalar archivos necesarios para el funcionamiento de cualquier proyecto laravel
-6. IMPORTANTE verificar que el sistema le haya creado el archivo .env en la raiz del proyecto de lo contrario deberá eliminar la carpeta Vendor y ejecutar el comando: composer update --ignore-platform-reqs  si genera erro al fonalizar ejecutan el comando: composer install --ignore-platform-reqs
+6. IMPORTANTE verificar que el sistema le haya creado el archivo .env en la raiz del proyecto de lo contrario deberá eliminar la carpeta Vendor y ejecutar el comando: composer update  si genera erro al fonalizar ejecutan el comando: composer install, al finalizar pueden ejecutar el comando copy .env.example .env    ('configurar archivo .env enrutando a la base de datos')
+
+7. Descargar el sql y configurar a su necesidad
+
 ![image](https://user-images.githubusercontent.com/124646372/219448679-cccbaffc-6ef7-46aa-8f3e-cf1c80d28c38.png)
 
 8. reinician laragon para que este automaticamente cree el enlace https para que abran el proyecto en su navegador
 9. Luego de reiniciar Laragon dan clic en el icono superior derecho 'h' referente a las configuraciones host del sistema...
+
 ![image](https://user-images.githubusercontent.com/124646372/219445810-c42edc8a-903f-46db-b82e-31b278114c85.png)
 ![image](https://user-images.githubusercontent.com/124646372/219445970-99ba9048-9d05-4422-8660-96f588365cb5.png)
+
 pueden copiar ese enlace en su navegador y ya validar
-8. Descargar el sql y configurar a su necesidad
+
 
 
 ## Introduccion
